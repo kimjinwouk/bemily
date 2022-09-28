@@ -1,6 +1,8 @@
 package a.jinkim.bemily.retofit
 
 import a.jinkim.bemily.retofit.dto.response.resUserList
+import a.jinkim.bemily.retofit.dto.response.userInfo
+import androidx.lifecycle.LiveData
 import retrofit2.http.*
 
 
@@ -16,5 +18,8 @@ interface RetrofitService {
         @Query("per_page") per_page: Int = SEARCH_LIMIT_SIZE,
     ): resUserList
 
-
+    @GET("/users/{userId}")
+    suspend fun getUserInfo(
+        @Path("userId") query: String = "",
+    ): userInfo
 }

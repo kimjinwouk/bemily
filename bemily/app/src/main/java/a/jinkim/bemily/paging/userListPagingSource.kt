@@ -2,6 +2,7 @@ package a.jinkim.bemily.paging
 
 import a.jinkim.bemily.retofit.RetrofitService
 import a.jinkim.bemily.retofit.dto.response.userItem
+import a.jinkim.bemily.util.datahelper
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import retrofit2.HttpException
@@ -28,7 +29,7 @@ class userListPagingSource(
             val prevKey = if (position == POST_STARTING_PAGE_INDEX) null else position - 1
             val nextKey = if (responseData.isEmpty()) null else position + 1
 
-            response.total_count
+            datahelper.total_cnt.value = response.total_count
 
             LoadResult.Page(
                 data = responseData,

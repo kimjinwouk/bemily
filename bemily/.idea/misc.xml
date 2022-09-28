@@ -9,6 +9,11 @@
         <entry key="..\:/Android/KotlinStudy/bemily/bemily/app/src/main/res/layout/item_user.xml" value="0.2953125" />
         <entry key="..\:/Android/KotlinStudy/bemily/bemily/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3463541666666667" />
         <entry key="..\:/Android/KotlinStudy/bemily/bemily/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1805" />
+        <entry key="..\:/bemily/bemily/app/src/main/res/layout/activity_main.xml" value="0.32065217391304346" />
+        <entry key="..\:/bemily/bemily/app/src/main/res/layout/fragment_userinfo.xml" value="0.32065217391304346" />
+        <entry key="..\:/bemily/bemily/app/src/main/res/layout/fragment_userlist.xml" value="0.49818840579710144" />
+        <entry key="..\:/bemily/bemily/app/src/main/res/layout/item_user.xml" value="0.32065217391304346" />
+        <entry key="..\:/bemily/bemily/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.31302083333333336" />
       </map>
     </option>
   </component>

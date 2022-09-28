@@ -1,24 +1,20 @@
 package a.jinkim.bemily.ui
 
 import a.jinkim.bemily.R
-import a.jinkim.bemily.adapter.userListAdapter
 import a.jinkim.bemily.databinding.ActivityMainBinding
 import a.jinkim.bemily.viewmodel.bemilyViewModel
-import android.content.Context
 import android.graphics.Rect
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -39,17 +35,10 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.apply {
-            
-            //BottomNavigation 연결
             val navHostFragment =
                 supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
             navController = navHostFragment.findNavController()
-            bottomNavigationView.setupWithNavController(navController)
         }
-
-
-
-
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
@@ -67,5 +56,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(ev)
+    }
+
+
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                navController.navigate(R.id.action_userinfo_to_userlist)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

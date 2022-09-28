@@ -1,13 +1,13 @@
 package a.jinkim.bemily.viewmodel
 
 
-import a.jinkim.bemily.retofit.dto.response.resError
-import a.jinkim.bemily.retofit.dto.response.resUserList
+import a.jinkim.bemily.retofit.dto.response.userInfo
 import a.jinkim.bemily.retofit.dto.response.userItem
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import kr.co.tapplace.repository.bemilyRepositoryImpl
 import javax.inject.Inject
 
@@ -18,23 +18,31 @@ class bemilyViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    var _userlist = MutableLiveData<resUserList>()
-    val userlist: LiveData<resUserList> get() = _userlist
-
-    var _error = MutableLiveData<resError>()
-    val error: LiveData<resError> get() = _error
-
     val query: MutableLiveData<String> = MutableLiveData()
 
-    val trackList: LiveData<PagingData<userItem>>
-        get() = _trackList
+    val userList: LiveData<PagingData<userItem>>
+        get() = _userList
 
-    private val _trackList = query.switchMap { queryString ->
+    private val _userList = query.switchMap { queryString ->
         bemilyRepositoryImpl.getUserList(queryString).cachedIn(viewModelScope)
     }
 
     fun getUserList(q: String) {
         query.value = q
     }
+
+
+
+    val userInfo: LiveData<userInfo>
+        get() = _userInfo
+
+    val _userInfo = MutableLiveData<userInfo>()
+
+    fun getUserInfo(userId : String) = viewModelScope.launch{
+        _userInfo.value = bemilyRepositoryImpl.getUserInfo(userId)
+    }
+
+
+
 
 }

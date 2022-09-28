@@ -11,8 +11,8 @@
         android:label="fragment_userlist"
         tools:layout="@layout/fragment_userlist">
         <action
-            android:id="@+id/action_userlistFragment_to_userinfoFragment"
-            app:destination="@id/userlist" />
+            android:id="@+id/action_userlist_to_userinfo"
+            app:destination="@id/userinfo" />
     </fragment>
 
     <fragment
@@ -20,7 +20,8 @@
         android:name="a.jinkim.bemily.ui.UserInfoFragment"
         android:label="fragment_userinfo"
         tools:layout="@layout/fragment_userinfo">
-
-
+        <action
+            android:id="@+id/action_userinfo_to_userlist"
+            app:destination="@id/userlist" />
     </fragment>
 </navigation>

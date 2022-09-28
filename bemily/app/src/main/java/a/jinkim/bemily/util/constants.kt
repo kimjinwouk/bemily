@@ -4,5 +4,6 @@ class constants {
     companion object{
         const val TAG = "Bemily"
         const val SERVER_ADDRESS = "https://api.github.com"
+        const val USERINFO = "userInfo"
     }
 }

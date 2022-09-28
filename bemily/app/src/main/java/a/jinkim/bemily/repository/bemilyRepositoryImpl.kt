@@ -2,8 +2,7 @@ package kr.co.tapplace.repository
 
 import a.jinkim.bemily.paging.userListPagingSource
 import a.jinkim.bemily.retofit.RetrofitService
-import a.jinkim.bemily.retofit.RetrofitService.Companion.SEARCH_LIMIT_SIZE
-import a.jinkim.bemily.retofit.dto.response.resUserList
+import a.jinkim.bemily.retofit.dto.response.userInfo
 import a.jinkim.bemily.retofit.dto.response.userItem
 import androidx.lifecycle.LiveData
 import androidx.paging.*
@@ -24,5 +23,11 @@ class bemilyRepositoryImpl @Inject constructor(
             }
         ).liveData
     }
+
+
+    override suspend fun getUserInfo(userId : String) : userInfo{
+        return RetrofitService.getUserInfo(userId)
+    }
+
 
 }

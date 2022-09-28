@@ -13,7 +13,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 
-class userListAdapter : PagingDataAdapter<userItem, userListAdapter.UserViewHolder>(differ) {
+class userListAdapter(private val itemClickedListener:(userItem) -> Unit) : PagingDataAdapter<userItem, userListAdapter.UserViewHolder>(differ) {
     companion object {
         private val differ = object : DiffUtil.ItemCallback<userItem>() {
             override fun areItemsTheSame(oldItem: userItem, newItem: userItem): Boolean {
@@ -32,7 +32,6 @@ class userListAdapter : PagingDataAdapter<userItem, userListAdapter.UserViewHold
         return  UserViewHolder(
                 ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
-
     }
 
     override fun onBindViewHolder(holderTrack: UserViewHolder, position: Int) {
@@ -48,22 +47,15 @@ class userListAdapter : PagingDataAdapter<userItem, userListAdapter.UserViewHold
 
             Glide.with(binding.avatarImageView)
                 .load(user.avatar_url)
-                .transform(
-                    CenterCrop(),
-                    RoundedCorners(10)
-                )
-                .thumbnail(0.1f)
                 .error(R.color.defaultImageColor) //에러
                 .placeholder(R.color.defaultImageColor) //미리보기
                 .fallback(R.color.defaultImageColor) // load할 url이 null인 경우 등 비어있을 때 보여줄 이미지를 설정
                 .into(binding.avatarImageView)
 
-
-
             binding.userNameTextViwe.text = user.login
             binding.githumUrlTextViwe.text = user.html_url
             binding.root.setOnClickListener{
-                //itemClickedListener(user)
+                itemClickedListener(user)
             }
 
         }
